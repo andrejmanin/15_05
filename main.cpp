@@ -38,25 +38,18 @@ void hm_2() {
     cin >> seccond;
 
 
-    int min = arr[0], max = arr[0];
-    if(first < seccond) {
-        for(int i = first - 1; i < seccond - 1; i++) {
-            if(arr[i] < min) {
-                min = arr[i];
-            }
-            if(arr[i] > max) {
-                max = arr[i];
-            }
-        }
+    if(first > seccond) {
+        int i = first;
+        first = seccond;
+        seccond = i;
     }
-    else {
-        for(int i = seccond - 1; i < first - 1; i++) {
-            if(arr[i] < min) {
-                min = arr[i];
-            }
-            if(arr[i] > max) {
-                max = arr[i];
-            }
+    int min = arr[first], max = arr[first];
+    for(int i = first - 1; i < seccond - 1; i++) {
+        if(arr[i] < min) {
+            min = arr[i];
+        }
+        if(arr[i] > max) {
+            max = arr[i];
         }
     }
     cout << "Min: " << min << endl;
@@ -74,7 +67,7 @@ void hm_3() {
     srand(time(0));
 
     for(int i = 0; i < n; i++) {
-        arr[i] = rand() % 120 - 20;
+        arr[i] = rand() % 40 - 20;
         cout << arr[i] << " ";
     }
     cout << endl;
@@ -100,16 +93,26 @@ void hm_3() {
                 break;
             }
             case 2: {
-                int min = arr[0], max = arr[0];
+                int min = arr[0], max = arr[0], min_i = 0, max_i = 0, dob = 1;
                 for(int i = 0; i < n; i++) {
                     if(arr[i] < min) {
                         min = arr[i];
+                        min_i = i;
                     }
                     if(arr[i] > max) {
                         max = arr[i];
+                        max_i = i;
                     }
                 }
-                cout << "Dob min and max: " << min * max << endl;
+                if(min_i > max_i) {
+                    int i = min_i;
+                    min_i = max_i;
+                    max_i = i;
+                }
+                for(int i = min_i; i <= max_i; i++) {
+                    dob *= arr[i];
+                }
+                cout << "Dob from min to max: " << dob << endl;
                 break;
             }
             case 3: {
@@ -123,7 +126,7 @@ void hm_3() {
                 break;
             }
             case 4: {
-                int sum = 0, first, seccond;
+                int sum = 0, first = 0, seccond;
                 for(int i = 0; i < n; i++) {
                     if(arr[i] < 0) {
                         first = i;
@@ -158,7 +161,7 @@ void hm_3() {
 }
 
 int main() {
-    hm_3();
+    hm_2();
 
     return 0;
 }
