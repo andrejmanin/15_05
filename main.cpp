@@ -1,6 +1,4 @@
 #include <iostream>
-#include <random>
-#include <vector>
 
 using namespace std;
 
